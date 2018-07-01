@@ -10,7 +10,6 @@ import java.util.Locale;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 
 /**
  * @author Michael Isvy Simple test to make sure that Bean Validation is working (useful
@@ -36,14 +35,10 @@ public class ValidatorTests {
         Set<ConstraintViolation<Person>> constraintViolations = validator
                 .validate(person);
 
-        assertThat(constraintViolations.size()).isEqualTo(10);
+        assertThat(constraintViolations.size()).isEqualTo(1);
         ConstraintViolation<Person> violation = constraintViolations.iterator().next();
         assertThat(violation.getPropertyPath().toString()).isEqualTo("firstName");
         assertThat(violation.getMessage()).isEqualTo("must not be empty");
-    }
-
-    public void dummyFailure() {
-        fail("Dummy Failure");
     }
 
 }
